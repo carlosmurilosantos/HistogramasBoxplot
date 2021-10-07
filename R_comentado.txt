@@ -1,0 +1,40 @@
+library(readxl) -> Comando para fazer o uso da biblioteca readxl.
+
+dados<-read_excel("C:/funcionario.xlsx") -> Comando responsável por abrir o arquivo no Excel e armazenar os dados em uma váriavel, no caso 'dados'. 
+
+a<-c(round(dados$idade_anos + dados$idade_meses/12)) -> Soma da idade em anos aos meses, para ter um número inteiro mais próximo da realidade. 
+
+mat <- matrix(c(1,2)) -> Criação de uma matrix 1x2 com as idades e armazenado em 'mat'.
+
+layout(mat, c(1,1), c(2,5,1)) -> Divisão da janela gráfica para uma forma mais flexível.
+
+topox = ceiling(max(a)) -> Comando para pegar o valor máximo armazenado em 'a' e arredondar para o próximo inteiro.  
+
+par(mar=c(0,5,2,1)) -> Comando para trabalhar a margem. No caso, a distância 0,5,2,1 (esquerda, direita, topo, baixo).
+
+b<-hist(a, breaks=c(seq(min(a),topox,4)), include.lowest = TRUE, right = FALSE, plot = FALSE) ->
+
+topoy = max(c(b$counts)) ->
+
+porcent = round((c(b$counts)/length(a))*100, 2) ->
+
+axis(1, at=seq(min(a), topox, by=4)) ->
+
+axis(2, at=seq(0,topoy, by=1)) ->
+
+j<-23
+k<-1
+for(i in 1:7){
+    text(j, k, paste(porcent[i], "%"))
+    j<-j+4
+}
+
+par(mar=c(0,5,0,1)) ->
+
+c<-boxplot(a, horizontal=TRUE, outline=FALSE, xlim=c(0,2), ylim=c(21,49), col="orange",axes=FALSE) ->
+
+
+
+
+
+
